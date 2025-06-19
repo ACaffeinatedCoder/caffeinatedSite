@@ -10,8 +10,11 @@ import Navi from './Navi';
  * 
  * Profile Page:
  *  - More Photos
+ *    - Gallery style
  *  - Art
+ *    - Gallery style
  *  - Motto
+ *    - Header?
  *  - Poems?
  * 
  * Projects Page:
@@ -20,6 +23,9 @@ import Navi from './Navi';
  *    - Brief Description
  *    - Functionalities
  *    - Awards if any
+ *    - Link
+ *    - Screenshots of pages
+ *      - Gallery Style
  * 
  * Contact Page:
  *  - Social Media Links
