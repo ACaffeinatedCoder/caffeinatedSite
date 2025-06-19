@@ -3,6 +3,31 @@ import './App.css';
 import Navi from './Navi';
 
 /**
+ * Experience Page:
+ *  - Academic Records
+ *  - CV?
+ *  - Certificates
+ * 
+ * Profile Page:
+ *  - More Photos
+ *  - Art
+ *  - Motto
+ *  - Poems?
+ * 
+ * Projects Page:
+ *  - Websites
+ *    - Role
+ *    - Brief Description
+ *    - Functionalities
+ *    - Awards if any
+ * 
+ * Contact Page:
+ *  - Social Media Links
+ *  - Email
+ *  - Contact no.?
+ */
+
+/**
  *  Palette 
 | Color Name      | Hex       | Usage                          |
 | --------------- | --------- | ------------------------------ |
@@ -23,7 +48,7 @@ function App() {
       <Navi />
       <div className="overall-container">
         <div className="photo-container">
-          <img src="public\me-2.png" className="me-class" />
+          <img src="/me-2.png" className="me-class" />
         </div>
         <div className="opening-card">
           <h1 style={{ color: '#3e1e04' }}>

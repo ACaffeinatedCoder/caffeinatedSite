@@ -14,7 +14,7 @@ function Navi() {
           <h2>Profile</h2>
         </div>
         <div className="nav-item">
-          <h2>Works</h2>
+          <h2>Projects</h2>
         </div>
         <div className="nav-item">
           <h2>Contact</h2>
