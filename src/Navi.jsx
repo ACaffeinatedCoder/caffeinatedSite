@@ -1,13 +1,15 @@
 import './App.css';
 
-function Navi() {
+function Navi({ expPage }) {
   return (
     <div className="navigation-bar">
       <strong style={{ marginLeft: '30px' }}>
         <i>acaffeinatedcoder</i>
       </strong>
       <div className="nav-links">
-        <div className="nav-item">
+        <div className="nav-item"
+          onClick={() => expPage(false)}
+        >
           <h2>Experience</h2>
         </div>
         <div className="nav-item">

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import './App.css';
 import Navi from './Navi';
+import Experience from '../Experience';
 
 /**
  * Experience Page:
  *  - Academic Records
  *  - CV?
  *  - Certificates
- * 
+ *
  * Profile Page:
  *  - More Photos
  *    - Gallery style
@@ -16,7 +17,7 @@ import Navi from './Navi';
  *  - Motto
  *    - Header?
  *  - Poems?
- * 
+ *
  * Projects Page:
  *  - Websites
  *    - Role
@@ -26,7 +27,7 @@ import Navi from './Navi';
  *    - Link
  *    - Screenshots of pages
  *      - Gallery Style
- * 
+ *
  * Contact Page:
  *  - Social Media Links
  *  - Email
@@ -47,17 +48,37 @@ import Navi from './Navi';
  */
 
 function App() {
-  // const [count, setCount] = useState(0)
-
+  const [exp, setExp] = useState(false);
+  
   return (
-    <div style={{ height: '100%', width: '100%' }}>
-      <Navi />
+    <div className="app-wrapper">
+      <div className="navigation-bar">
+        <strong className="brand">
+          <i>acaffeinatedcoder</i>
+        </strong>
+        <div className="nav-links">
+          <div className="nav-item" onClick={() => setExp(!exp)}>
+            <h2>Experience</h2>
+          </div>
+          <div className="nav-item">
+            <h2>Profile</h2>
+          </div>
+          <div className="nav-item">
+            <h2>Projects</h2>
+          </div>
+          <div className="nav-item">
+            <h2>Contact</h2>
+          </div>
+        </div>
+      </div>
+
       <div className="overall-container">
         <div className="photo-container">
           <img src="/me-2.png" className="me-class" />
         </div>
+
         <div className="opening-card">
-          <h1 style={{ color: '#3e1e04' }}>
+          <h1 className="site-title">
             <i>acaffeinatedcoder.dev</i>
           </h1>
           <div className="card">
@@ -65,32 +86,49 @@ function App() {
               Welcome to my personal website where you'll get to know my
               hobbies, interests, and whatnot.
             </h2>
-            <h4 style={{ paddingLeft: '90px' }}>
+            <h4 style={{ textAlign: 'center' }}>
               <i>It's my website so I'll pretty much put in whatever I want.</i>
             </h4>
-          </div>
-          <div className="palette-container">
-            <div
-              className="my-rectangle"
-              style={{ backgroundColor: '#3e1e04' }}></div>
-            <div
-              className="my-rectangle"
-              style={{ backgroundColor: '#6a3005' }}></div>
-            <div
-              className="my-rectangle"
-              style={{ backgroundColor: '#965015' }}></div>
-            <div
-              className="my-rectangle"
-              style={{ backgroundColor: '#c4923e' }}></div>
-            <div
-              className="my-rectangle"
-              style={{ backgroundColor: '#cbac85' }}></div>
-            <div
-              className="my-rectangle"
-              style={{ backgroundColor: '#ffffff' }}></div>
+            <h3>Palette:</h3>
+            <div className="palette-container">
+              {[
+                '#3e1e04',
+                '#6a3005',
+                '#965015',
+                '#c4923e',
+                '#cbac85',
+                '#ffffff',
+              ].map((color, index) => {
+                // Function to determine whether to use white or black text
+                const getTextColor = (bgColor) => {
+                  const r = parseInt(bgColor.slice(1, 3), 16);
+                  const g = parseInt(bgColor.slice(3, 5), 16);
+                  const b = parseInt(bgColor.slice(5, 7), 16);
+                  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+                  return brightness < 128 ? '#ffffff' : '#000000'; // Bright text for dark bg, dark text for light bg
+                };
+
+                const textColor = getTextColor(color);
+
+                return (
+                  <div
+                    key={index}
+                    className="my-rectangle"
+                    style={{ backgroundColor: color, color: textColor }}>
+                    <p>{color}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
+
+      {exp && (
+        <div className={`overlay ${exp ? 'open' : ''}`}>
+          <Experience />
+        </div>
+      )}
     </div>
   );
 }
