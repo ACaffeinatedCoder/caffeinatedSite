@@ -57,9 +57,13 @@ function App() {
           <i>acaffeinatedcoder</i>
         </strong>
         <div className="nav-links">
-          <div className="nav-item" onClick={() => setExp(!exp)}>
+          <button
+            className="nav-item"
+            onClick={() => setExp(!exp)}
+            disabled={exp}
+          >
             <h2>Experience</h2>
-          </div>
+          </button>
           <div className="nav-item">
             <h2>Profile</h2>
           </div>
@@ -125,8 +129,8 @@ function App() {
       </div>
 
       {exp && (
-        <div className={`overlay ${exp ? 'open' : ''}`}>
-          <Experience />
+        <div className={`overlay slide-up`}>
+          <Experience closer={setExp}/>
         </div>
       )}
     </div>

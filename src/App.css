@@ -1,9 +1,19 @@
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
 #root {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
+
 
 .logo {
   height: 6em;
@@ -40,6 +50,7 @@
 }
 
 .app-wrapper {
+  position: relative;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -49,7 +60,7 @@
 
 .navigation-bar {
   background-color: #6a3005;
-  height: 60px;
+  height: 80px;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -68,17 +79,23 @@
 }
 
 .nav-item {
+  background-color: #6a3005;
   font-family: 'DM Sans', sans-serif;
   text-align: center;
   padding: 0px 5px;
   border-radius: 20px;
   color: white;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .nav-item:hover {
   background-color: #965015;
+}
+
+.nav-links button:disabled {
+  color: black;
+  background-color: #c4923e;
 }
 
 .overall-container {
@@ -160,27 +177,54 @@
   display: inline-block;
   justify-self: center;
   align-self: center;
-  font-size: 1.2vw;
+  font-size: 1vw;
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 80px;
   left: 0;
+  right: 0;
   width: 100%;
-  height: 10px;
+  height: calc(100vh - 80px);
   background-color: #c4923e;
   overflow: hidden;
-  transition: height 1s ease, opacity 1s ease;
-  opacity: 0;
+  transition: height 0.5s ease, opacity 0.5s ease;
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
-.overlay.open {
-  height: calc(100vh - 80px);
-  opacity: 1;
+.slide-up {
+  animation: slideUp 0.6s ease forwards;
 }
 
+.slide-down {
+  animation: slideDown 0.6s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
