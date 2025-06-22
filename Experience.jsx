@@ -9,6 +9,13 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 import './Experience.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+/**
+ * Map Contents
+ *  - Uniform Look
+ *  -- Education/Work Experience
+ *  --- Details
+ */
+
 export default function Experience({ closer }) {
     return (
         <div className='exp-container'>
