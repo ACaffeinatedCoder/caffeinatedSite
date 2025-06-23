@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Navi from './Navi';
-import Experience from '../Experience';
+import Experience from './Experience';
 
 /**
  * Experience Page:
