@@ -4,6 +4,10 @@ import Navi from './Navi';
 import Experience from './Experience';
 
 /**
+ * Review and consider for revamp: https://www.behance.net/gallery/191411843/Personal-Portfolio-Website-Design-Figma-Web-Design
+ */
+
+/**
  * Experience Page:
  *  - Academic Records
  *  - CV?
