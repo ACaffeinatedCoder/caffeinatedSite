@@ -17,18 +17,18 @@
   width: 100%;
   height: 100%;
   border-radius: 15px;
-  border: 5px dashed white;
   box-sizing: border-box;
   overflow-x: scroll;
   padding: 1%;
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  justify-content: center;
 }
 
 .exp-content-item {
   background-color: #965015;
-  width: 50%;
+  width: 75%;
   height: 100%;
   border-radius: 15px;
   box-sizing: border-box;
@@ -40,47 +40,55 @@
   font-family: 'DM Sans', sans-serif;
 }
 
+.exp-subcontent-item {
+  overflow: auto;
+}
+
 .exp-content-item h2 {
   font-size: 3vh;
+  color: #ffd6a3;
+}
+
+.exp-content-item i {
+  color: #ffd6a3;
+  font-weight: bold;
 }
 
 .exp-content-item p {
   font-size: 2.5vh
 }
 
-.exp-content-item li {
+.exp-subcontent-item li {
   font-size: 2vh;
-  transition: font-size 0.5s ease;
+  transition: font-size 0.3s ease;
   cursor: pointer;
+  list-style-type: none;
 }
 
-.exp-content-item li:hover {
+.exp-subcontent-item li:hover {
   background-color: #cbac85;
   color: black;
   margin: 2px;
   padding: 5px;
   border-radius: 15px;
   font-size: 2.5vh;
+  font-weight: bold;
 }
 
-/* Width of the scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
 }
 
-/* Track (background) */
 ::-webkit-scrollbar-track {
   background: #cbac85;
   border-radius: 10px;
 }
 
-/* Handle (thumb) */
 ::-webkit-scrollbar-thumb {
   background: #6a3005;
   border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #965015;
 }
@@ -94,6 +102,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.modal-header h2 {
+  font-size: 3vh;
 }
 
 .modal-closer {

@@ -1,11 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Navi from './Navi';
 import Experience from './Experience';
-
-/**
- * Review and consider for revamp: https://www.behance.net/gallery/191411843/Personal-Portfolio-Website-Design-Figma-Web-Design
- */
+import Profile from './Profile';
 
 /**
  * Experience Page:
@@ -47,13 +44,31 @@ import Experience from './Experience';
 | **Mocha Cream** | `#965015` | Text highlights, soft borders  |
 | **Latte Foam**  | `#c4923e` | Accent text, muted icons       |
 | **Coffee Dust** | `#cbac85` | Primary text color             |
+| *dunno*         | `#ffd6a3` | Primary text color             |
 | **Pure White**  | `#FFFFFF` | Headers or important contrasts |
 
  */
 
 function App() {
-  const [exp, setExp] = useState(false);
-  
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [animationClass, setAnimationClass] = useState('');
+  const [activeOverlay, setActiveOverlay] = useState(null);
+
+  useEffect(() => {
+    if (activeOverlay) {
+      setShowOverlay(true);
+      setAnimationClass('slide-up');
+    }
+  }, [activeOverlay]);
+
+  const closeOverlay = () => {
+    setAnimationClass('slide-down');
+    setTimeout(() => {
+      setShowOverlay(false);
+      setActiveOverlay(null);
+    }, 600);
+  };
+
   return (
     <div className="app-wrapper">
       <div className="navigation-bar">
@@ -63,14 +78,16 @@ function App() {
         <div className="nav-links">
           <button
             className="nav-item"
-            onClick={() => setExp(!exp)}
-            disabled={exp}
-          >
+            onClick={() => setActiveOverlay('experience')}
+            disabled={activeOverlay === 'experience'}>
             <h2>Experience</h2>
           </button>
-          <div className="nav-item">
+          <button
+            className="nav-item"
+            onClick={() => setActiveOverlay('profile')}
+            disabled={activeOverlay === 'profile'}>
             <h2>Profile</h2>
-          </div>
+          </button>
           <div className="nav-item">
             <h2>Projects</h2>
           </div>
@@ -87,54 +104,32 @@ function App() {
 
         <div className="opening-card">
           <h1 className="site-title">
-            <i>acaffeinatedcoder.dev</i>
+            <span style={{ color: '#3e1e04' }}>
+              Hi, I'm
+              <span style={{ color: '#6a3005' }}> Casey Francisco</span>!
+            </span>
           </h1>
           <div className="card">
-            <h2>
-              Welcome to my personal website where you'll get to know my
-              hobbies, interests, and whatnot.
+            <h2 style={{ textAlign: 'justify' }}>
+              I am a Backend-focused Full-stack Web Developer with a passion for
+              building reliable systems and teaching others how to code.
             </h2>
-            <h4 style={{ textAlign: 'center' }}>
-              <i>It's my website so I'll pretty much put in whatever I want.</i>
-            </h4>
-            <h3>Palette:</h3>
-            <div className="palette-container">
-              {[
-                '#3e1e04',
-                '#6a3005',
-                '#965015',
-                '#c4923e',
-                '#cbac85',
-                '#ffffff',
-              ].map((color, index) => {
-                // Function to determine whether to use white or black text
-                const getTextColor = (bgColor) => {
-                  const r = parseInt(bgColor.slice(1, 3), 16);
-                  const g = parseInt(bgColor.slice(3, 5), 16);
-                  const b = parseInt(bgColor.slice(5, 7), 16);
-                  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-                  return brightness < 128 ? '#ffffff' : '#000000'; // Bright text for dark bg, dark text for light bg
-                };
-
-                const textColor = getTextColor(color);
-
-                return (
-                  <div
-                    key={index}
-                    className="my-rectangle"
-                    style={{ backgroundColor: color, color: textColor }}>
-                    <p>{color}</p>
-                  </div>
-                );
-              })}
+            <div style={{ textAlign: 'center' }}>
+              <h4>
+                <i>Fueled by coffee with an eye for clean code.</i>
+              </h4>
+              <button>Download my CV</button>
             </div>
           </div>
         </div>
       </div>
 
-      {exp && (
-        <div className={`overlay slide-up`}>
-          <Experience closer={setExp}/>
+      {showOverlay && (
+        <div className={`overlay ${animationClass}`}>
+          {activeOverlay === 'experience' && (
+            <Experience closer={closeOverlay} />
+          )}
+          {activeOverlay === 'profile' && <Profile closer={closeOverlay} />}
         </div>
       )}
     </div>
