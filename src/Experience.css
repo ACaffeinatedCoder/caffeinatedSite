@@ -8,7 +8,7 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   box-sizing: border-box;
   padding: 1rem;
 }
@@ -18,26 +18,31 @@
   height: 100%;
   border-radius: 15px;
   box-sizing: border-box;
-  overflow-x: scroll;
   padding: 1%;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
-  justify-content: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: auto;
+  scroll-snap-type: x mandatory;
 }
 
 .exp-content-item {
-  background-color: #965015;
-  width: 75%;
+  flex: 0 0 auto;
+  width: 75vw;
   height: 100%;
   border-radius: 15px;
-  box-sizing: border-box;
   overflow: auto;
-  padding: 1%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   color: white;
   font-family: 'DM Sans', sans-serif;
+  background-color: #965015;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .exp-subcontent-item {
@@ -59,19 +64,24 @@
 }
 
 .exp-subcontent-item li {
-  font-size: 2vh;
+  margin: 10px 30px;
+  padding-right: 20px;
+  font-size: 2.2vh;
   transition: font-size 0.3s ease;
   cursor: pointer;
-  list-style-type: none;
+  list-style-type: circle;
+}
+
+.exp-subcontent-item li::marker {
+  color: #ffd6a3;
+  font-size: 2.5vh;
 }
 
 .exp-subcontent-item li:hover {
   background-color: #cbac85;
   color: black;
-  margin: 2px;
   padding: 5px;
   border-radius: 15px;
-  font-size: 2.5vh;
   font-weight: bold;
 }
 
@@ -115,4 +125,27 @@
   font-size: 4vh;
   background-color: #cbac85;
   border-radius: 50%;
+}
+
+.modal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5vh;
+  height: 5vh;
+  color: #6a3005;
+  cursor: pointer;
+  font-size: 5vh;
+  background-color: #cbac85;
+  border-radius: 50%;
+  border: 6px #6a3005 solid;
+  padding: 10px
+}
+
+.modal-icon:hover {
+  background-color: #ffd6a3;
+}
+
+.selected {
+  background-color: #ffd6a3;
 }

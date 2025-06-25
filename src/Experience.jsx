@@ -9,6 +9,7 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import './Experience.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
+import { faCertificate, faGraduationCap, faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Map Contents
@@ -62,6 +63,21 @@ export default function Experience({ closer }) {
         'Teaching BSCS students in Basic Web Development',
         'Teaching BSIT students in Information Assurance and Security',
       ],
+      dateStart: 'August 2024',
+      dateEnd: 'Now',
+    },
+    {
+      title: 'Experience',
+      description: 'Operations Support Analyst',
+      organization: 'Netzwelt, Inc.',
+      role: 'Operations Support Analyst',
+      responsibilities: [
+        'Team & Customer Communication: Coordinate with colleagues daily via Teams or Zoom, and follow up with customers through email or phone regarding claims and inquiries.',
+        'Claim Validation & Support: Validate customer claims based on promotion mechanics and handle inquiries received through the support mailbox.',
+        'Process Improvement: Join process analysis meetings, identify areas for improvement, and maintain a strong understanding of internal workflows.',
+      ],
+      dateStart: 'March 2025',
+      dateEnd: 'May 2025',
     },
   ]);
 
@@ -72,10 +88,10 @@ export default function Experience({ closer }) {
       return (
         <div className="exp-content-item" key={content.course}>
           <h2>
-            {content.organization} - {content.description}
+            {content.organization} - {content.description.toUpperCase()}
           </h2>
           <p>
-            {content.course} - From <i>{content.dateStart}</i> to{' '}
+            {content.course.toUpperCase()} - From <i>{content.dateStart}</i> to{' '}
             <i>{content.dateEnd}</i>
           </p>
           <h3>Achievements</h3>
@@ -90,17 +106,50 @@ export default function Experience({ closer }) {
       );
     } else if (
       content.title === 'Experience' &&
-      contentSelected === 'Experience'
+      contentSelected === 'Experience' && content.dateEnd === 'Now'
     ) {
       return (
         <div className="exp-content-item" key={content.role}>
-          <h2>{content.title}</h2>
-          <p>
-            <i>
-              {content.description} at {content.organization} as a{' '}
-              {content.role}
-            </i>
-          </p>
+          <h2>{content.role.toUpperCase()}</h2>
+          <div style={{flexDirection: 'column'}}>
+            <p>
+              <i>
+                Employed at {content.organization} as a{' '}
+                {content.role}
+              </i>
+            </p>
+            <p>
+              From <i>{content.dateStart}</i> and is <i>currently employed</i> 
+            </p>
+          </div>
+          <h3>Responsibilities</h3>
+          <div className="exp-subcontent-item">
+            <ul>
+              {content.responsibilities.map((resp, index) => (
+                <li key={index}>{resp}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      );
+    } else if (
+      content.title === 'Experience' &&
+      contentSelected === 'Experience' && content.dateEnd !== 'Now'
+    ) {
+      return (
+        <div className="exp-content-item" key={content.role}>
+          <h2>{content.role.toUpperCase()}</h2>
+          <div style={{flexDirection: 'column'}}>
+            <p>
+              <i>
+                Employed at {content.organization} as a{' '}
+                {content.role}
+              </i>
+            </p>
+            <p>
+              From <i>{content.dateStart}</i> up until{' '}<i>{content.dateEnd}</i> 
+            </p>
+          </div>
           <h3>Responsibilities</h3>
           <div className="exp-subcontent-item">
             <ul>
@@ -117,7 +166,7 @@ export default function Experience({ closer }) {
     ) {
       return (
         <div className="exp-content-item" key={content.title}>
-          <h2>{content.title}</h2>
+          <h2>{content.title.toUpperCase()}</h2>
           <h3>List of Certificates</h3>
           <div className="exp-subcontent-item">
             <ul>
@@ -129,21 +178,29 @@ export default function Experience({ closer }) {
         </div>
       );
     }
+    return null
   });
 
   return (
     <div className="exp-container">
       <div className="modal-header">
-        <h2>
-          My{' '}
-          <span
-            style={{ color: '#6a3005' }}
-            onClick={() => setContent('Education')}>
-            Education
-          </span>{' '}
-          & <span style={{ color: '#6a3005' }}>Work Experience</span>
-        </h2>
-        {contentSelected}
+        <div style={{ gap: '1rem', display: 'flex', flexDirection: 'row'}}>
+          <FontAwesomeIcon
+            icon={faGraduationCap}
+            className={`modal-icon ${contentSelected === 'Education' ? 'selected' : ''}`}
+              onClick={() => setContent('Education')}
+          />
+          <FontAwesomeIcon
+            icon={faUserTie}
+            className={`modal-icon ${contentSelected === 'Experience' ? 'selected' : ''}`}
+              onClick={() => setContent('Experience')}
+          />
+          <FontAwesomeIcon
+            icon={faCertificate}
+            className={`modal-icon ${contentSelected === 'Certifications' ? 'selected' : ''}`}
+              onClick={() => setContent('Certifications')}
+          />
+        </div>
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="modal-closer"
