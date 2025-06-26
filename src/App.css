@@ -79,6 +79,7 @@ html, body {
 }
 
 .nav-item {
+  width: 10vw;
   background-color: #6a3005;
   font-family: 'DM Sans', sans-serif;
   text-align: center;

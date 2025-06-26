@@ -7,6 +7,22 @@ import { faCog, faMugHot } from '@fortawesome/free-solid-svg-icons';
 
 export default function Profile({ closer }) {
   const [profileStatement, setProfileStatement] = useState('');
+  const [certs, setCerts] = useState([
+        'Completer of Computer Systems Servicing NCII Program of TESDA',
+        'Attendee of the webinar entitled Understanding Security Operations Center by the Department of Information and Communications Technology Region IV-A Cybersecurity Bureau',
+        'Attendee of the LUVOPSEA Research Seminar and Workshop entitled Artificial Intelligence in Research for Students and Teachers',
+        'Attendee of the PSITE-CALABARZON Data Science Frontiers: Harnessing NLP and Generative AI for IT Education Advancement',
+        'Attendee of the PSITE-NCR’s Monthly Seminar-Workshop entitled STUDENT CONGRESS 2024 INNOVATING WITH INTELLIGENCE: AI ETHICS & BIG DATA TRANSPARENCY',
+        'Attendee of EROVOUTIKA’s Seminar and Workshop in ROBOTICS AND AUTOMATION',
+        'Completer of the twenty-hour hybrid training on Quality Management Systems Standards in Digital Service Delivery by the ICT Literacy and Competency Development Bureau of the DICT Region IV-A (CALABARZON) Rizal',
+        'Completer of the Data Analytics Bootcamp by Alexander Freberg',
+        'Completer of Fundamentals of Analytics on AWS Part 1 and 2',
+        'Completer of Foundational C# with Microsoft',
+        'Completer of Scrum Agile Master by Simplilearn',
+        'Completer of An Introduction to JIRA Architecture by Alison',
+        'Completer of Anti-Money Laundering and Customer Verification Training by Alison',
+        'Career Service Examination - Pen and Paper Test (Professional Level)',
+  ])
   const [skills, setSkills] = useState([
     {id: 'Python-skill', desc: 'Python', imageref: 'https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg', altref: 'Python Icon'},
     { id: 'CSharp-skill', desc: 'C#', imageref: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Logo_C_sharp.svg/256px-Logo_C_sharp.svg.png?20221121173824', altref: 'C# Icon' },
@@ -57,12 +73,12 @@ export default function Profile({ closer }) {
                   user-focused web solutions
                 </span>
                 . Technical experience includes{' '}
-                <span style={{ color: '#61DAFB' }}>ReactJS</span>,{' '}
-                <span style={{ color: '#FFA726' }}>Firebase</span>,{' '}
-                <span style={{ color: '#B388EB' }}>C#</span>,{' '}
-                <span style={{ color: '#FFD43B' }}>Python</span>,{' '}
-                <span style={{ color: '#B0BEC5' }}>SQL</span>, and data tools
-                like <span style={{ color: '#33C481' }}>Microsoft Excel</span>.
+                <span style={{ color: '#61DAFB', fontWeight: 'bold' }}>ReactJS</span>,{' '}
+                <span style={{ color: '#FFA726', fontWeight: 'bold' }}>Firebase</span>,{' '}
+                <span style={{ color: '#B388EB', fontWeight: 'bold' }}>C#</span>,{' '}
+                <span style={{ color: '#FFD43B', fontWeight: 'bold' }}>Python</span>,{' '}
+                <span style={{ color: '#B0BEC5', fontWeight: 'bold' }}>SQL</span>, and data tools
+                like <span style={{ color: '#33C481', fontWeight: 'bold' }}>Microsoft Excel</span>.
                 Beyond coding, there's experience{' '}
                 <span style={{ color: '#cbac85' }}>
                   teaching programming concepts
@@ -91,7 +107,7 @@ export default function Profile({ closer }) {
             <FontAwesomeIcon icon={faCog} className="cog-icon" />
           </div>
           <div className='skills-gallery'>
-          {skillsMapped}
+            {skillsMapped}
           </div>
         </div>
       </div>

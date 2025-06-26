@@ -39,6 +39,7 @@ import Profile from './Profile';
  *  Palette 
 | Color Name      | Hex       | Usage                          |
 | --------------- | --------- | ------------------------------ |
+| *dunno*         | `#462003` | Dark text color                |
 | **Dark Roast**  | `#3e1e04` | Background, navbar, base color |
 | **Espresso**    | `#6a3005` | Cards, panels, code blocks     |
 | **Mocha Cream** | `#965015` | Text highlights, soft borders  |
