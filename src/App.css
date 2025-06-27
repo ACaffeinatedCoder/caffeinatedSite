@@ -157,36 +157,6 @@ html, body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.palette-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  margin-top: 1rem;
-  gap: 0rem;
-}
-
-.my-rectangle {
-  flex: 1;
-  max-width: 100px;
-  height: 80px;
-  border: 3px solid white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  align-content: center;
-  justify-content: center;
-}
-
-.my-rectangle p {
-  transform: rotate(-90deg);
-  display: inline-block;
-  justify-self: center;
-  align-self: center;
-  font-size: 1vw;
-}
-
 .overlay {
   position: fixed;
   top: 60px;

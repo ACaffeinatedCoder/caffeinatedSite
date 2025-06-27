@@ -3,21 +3,18 @@ import './App.css';
 import Navi from './Navi';
 import Experience from './Experience';
 import Profile from './Profile';
+import Contact from './Contact';
 
 /**
  * Experience Page:
- *  - Academic Records
- *  - CV?
- *  - Certificates
+ *  - Timeline
+ *    - Academic Experience
+ *    - Work Experience
  *
  * Profile Page:
- *  - More Photos
- *    - Gallery style
- *  - Art
- *    - Gallery style
- *  - Motto
- *    - Header?
- *  - Poems?
+ *  - About statement
+ *  - Skills
+ *  - Certificates
  *
  * Projects Page:
  *  - Websites
@@ -90,11 +87,14 @@ function App() {
             <h2>Profile</h2>
           </button>
           <div className="nav-item">
-            <h2>Projects</h2>
+            <h2>Project</h2>
           </div>
-          <div className="nav-item">
+          <button
+            className="nav-item"
+            onClick={() => setActiveOverlay('contact')}
+            disabled={activeOverlay === 'contact'}>
             <h2>Contact</h2>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -131,6 +131,7 @@ function App() {
             <Experience closer={closeOverlay} />
           )}
           {activeOverlay === 'profile' && <Profile closer={closeOverlay} />}
+          {activeOverlay === 'contact' && <Contact closer={closeOverlay} />}
         </div>
       )}
     </div>
