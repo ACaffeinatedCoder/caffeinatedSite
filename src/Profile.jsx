@@ -3,10 +3,9 @@ import './Experience.css';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { faCog, faMugHot } from '@fortawesome/free-solid-svg-icons';
+import { faCertificate, faCog, faMugHot } from '@fortawesome/free-solid-svg-icons';
 
 export default function Profile({ closer }) {
-  const [profileStatement, setProfileStatement] = useState('');
   const [certs, setCerts] = useState([
         'Completer of Computer Systems Servicing NCII Program of TESDA',
         'Attendee of the webinar entitled Understanding Security Operations Center by the Department of Information and Communications Technology Region IV-A Cybersecurity Bureau',
@@ -23,6 +22,13 @@ export default function Profile({ closer }) {
         'Completer of Anti-Money Laundering and Customer Verification Training by Alison',
         'Career Service Examination - Pen and Paper Test (Professional Level)',
   ])
+  const certsMapped = certs.map((cert, index) => {
+    return (
+    <div className='cert-container' key={index}>
+      <h3>{cert}</h3>
+    </div>
+  )})
+
   const [skills, setSkills] = useState([
     {id: 'Python-skill', desc: 'Python', imageref: 'https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg', altref: 'Python Icon'},
     { id: 'CSharp-skill', desc: 'C#', imageref: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Logo_C_sharp.svg/256px-Logo_C_sharp.svg.png?20221121173824', altref: 'C# Icon' },
@@ -108,6 +114,16 @@ export default function Profile({ closer }) {
           </div>
           <div className='skills-gallery'>
             {skillsMapped}
+          </div>
+        </div>
+        <div className='skills-container'>
+          <div className='skills-header'>
+            <FontAwesomeIcon icon={faCertificate} className="cog-icon" />
+            <h2>CERTIFICATES</h2>
+            <FontAwesomeIcon icon={faCertificate} className="cog-icon" />
+          </div>
+          <div className='certs-gallery'>
+            {certsMapped}
           </div>
         </div>
       </div>

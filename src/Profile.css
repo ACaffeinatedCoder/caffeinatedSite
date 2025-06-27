@@ -76,6 +76,8 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    font-size: 2.5vh;
+    color: #ffd6a3;
 }
 
 .skills-header {
@@ -83,11 +85,6 @@
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-}
-
-.skills-header h2 {
-    color: #ffd6a3;
-    font-size: 2.5vh;
 }
 
 .skill-container {
@@ -125,6 +122,34 @@
   color: #ffd6a3;
 }
 
+.cert-container {
+  display: flex;
+    margin: 5px;
+    padding: 0.75rem 0.5rem;
+    background-color: #ffd6a3;
+    border-radius: 25px;
+    height: 100%;
+    width: 100%;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: #ffd6a3;
+    background-color: #6a3005;
+    border: 5px solid #965015;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+    text-align: left;
+    cursor: pointer;
+  font-size: 85%;
+}
+
+.cert-container:hover {
+  background-color: #ffd6a3;
+  transform: scale(1.05);
+  color: #6a3005;
+}
+
 .skills-gallery {
   display: grid;
   grid-template-columns: repeat(5, minmax(150px, 1fr));
@@ -151,6 +176,28 @@
 }
 @media (max-width: 400px) {
   .skills-gallery {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+
+.certs-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .certs-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .certs-gallery {
     grid-template-columns: repeat(1, 1fr);
   }
 }
