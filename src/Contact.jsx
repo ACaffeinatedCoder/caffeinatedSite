@@ -108,6 +108,7 @@ export default function Contact({ closer }) {
         <div className='footer-line'></div>
       </div>
       <div className="palette-container">
+          <h3 style={{marginRight: '10px', color:'black'}}>Website Palette:</h3>
         {['#3e1e04', '#462003', '#6a3005', '#965015', '#c4923e', '#cbac85', '#ffd6a3', '#ffffff'].map(
           (color, index) => {
             const getTextColor = (bgColor) => {
