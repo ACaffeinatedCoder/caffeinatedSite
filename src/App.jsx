@@ -4,6 +4,7 @@ import Navi from './Navi';
 import Experience from './Experience';
 import Profile from './Profile';
 import Contact from './Contact';
+import Project from './Project';
 
 /**
  * Experience Page:
@@ -86,9 +87,12 @@ function App() {
             disabled={activeOverlay === 'profile'}>
             <h2>Profile</h2>
           </button>
-          <div className="nav-item">
-            <h2>Project</h2>
-          </div>
+          <button
+            className="nav-item"
+            onClick={() => setActiveOverlay('projects')}
+            disabled={activeOverlay === 'projects'}>
+            <h2>Projects</h2>
+          </button>
           <button
             className="nav-item"
             onClick={() => setActiveOverlay('contact')}
@@ -132,6 +136,7 @@ function App() {
           )}
           {activeOverlay === 'profile' && <Profile closer={closeOverlay} />}
           {activeOverlay === 'contact' && <Contact closer={closeOverlay} />}
+          {activeOverlay === 'projects' && <Project closer={closeOverlay} />}
         </div>
       )}
     </div>

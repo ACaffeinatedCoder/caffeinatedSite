@@ -128,6 +128,36 @@ export default function Experience({ closer }) {
           </div>
         </div>
       );
+    } else if (content.title === 'Experience' && content.dateEnd === 'Now') {
+      return (
+        <div className="exp-content-item" key={content.role}>
+          <div className="exp-left">
+            <div className="time-tag">{content.dateStart}</div>
+          </div>
+          <div className="exp-middle">
+            <FontAwesomeIcon icon={faUserTie} className="modal-icon" />
+            <div className="timeline"></div>
+          </div>
+          <div className="exp-right">
+            <div className="exp-subHeader">
+              <h2>
+                {content.organization} - {content.description.toUpperCase()}
+              </h2>
+            </div>
+            <p>
+              From <i>{content.dateStart}</i> and is <i>currently employed</i>            
+            </p>
+            <h3>Job Description</h3>
+            <div className="exp-subcontent-item">
+              <ul>
+                {content.subDetails.map((ach, index) => (
+                  <li key={index}>{ach}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
     } else if (content.title === 'Experience') {
       return (
         <div className="exp-content-item" key={content.role}>

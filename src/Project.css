@@ -1,0 +1,24 @@
+.proj-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.proj-subcontainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 2rem;
+  border-radius: 15px;
+  background-color: #3e1e04;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  scroll-snap-type: y mandatory;
+}
