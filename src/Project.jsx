@@ -53,16 +53,16 @@ export default function Project({ closer }) {
               {sites.roles.map((role, index) => (
                 <p key={index}>{role}</p>
               ))}
-            </div>
-            <div className='embed-visit'>
-                <button onClick={() => window.open(sites.siteLink, '_blank')}>Visit</button>
-            </div>            <p>{sites.description}</p>
+            </div>           <p>{sites.description}</p>
             <h2>Awards</h2>
             <div className="proj-awards">
               {sites.awards.map((award, index) => (
                 <p key={index}>{award}</p>
               ))}
             </div>
+            <div className='embed-visit'>
+                <button onClick={() => window.open(sites.siteLink, '_blank')}>Visit</button>
+            </div> 
           </div>
         </div>
       );
@@ -97,10 +97,10 @@ export default function Project({ closer }) {
                 <p key={index}>{role}</p>
               ))}
             </div>
+            <p>{sites.description}</p>
             <div className='embed-visit'>
                 <button onClick={() => window.open(sites.siteLink, '_blank')}>Visit</button>
             </div>
-            <p>{sites.description}</p>
           </div>
         </div>
       );
@@ -118,7 +118,7 @@ export default function Project({ closer }) {
         />
       </div>
       <div className="proj-subcontainer">
-        <h1>Projects</h1>
+        <h1>The results of ingesting caffeine</h1>
         <div>{sitesMapped}</div>
       </div>
     </div>

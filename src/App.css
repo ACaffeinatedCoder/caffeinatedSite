@@ -145,7 +145,7 @@ html, body {
 
 .card button {
   background-image: linear-gradient(to top, #3e1e04, #6a3005, #965015, #c4923e);
-  border: 0px;
+  border: none;
 }
 
 .me-class {
