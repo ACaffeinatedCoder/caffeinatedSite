@@ -22,3 +22,104 @@
   scrollbar-width: none;
   scroll-snap-type: y mandatory;
 }
+
+.embed-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
+  margin: 0.5rem 0;
+}
+
+.iframe-wrapper {
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.embed-details {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1.5vh;
+  color: #ffd6a3;
+}
+
+.embed-details h1 {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.embed-details h3, h2 {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.embed-details p {
+  text-indent: 2em;
+  text-align: justify;
+}
+
+.embed-details p:hover {
+  transform: scale(1.05);
+}
+
+.embed-visit {
+  justify-content: center;
+  justify-items: center;
+  border: 2px solid white;
+}
+
+.proj-roles {
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.proj-roles p {
+  border: 3px solid #ffd6a3;
+  width: 40%;
+  font-size: 1.1rem;
+  text-align: center;
+  border-radius: 20px;
+  padding: 2px 20px;
+  text-indent: 0em;
+}
+
+.proj-roles p:hover {
+  background-color: #ffd6a3;
+  color: #3e1e04;
+  font-weight: bold;
+  width: 50%;
+}
+
+.proj-awards {
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 0.1rem
+}
+
+.proj-awards p {
+  border: 3px solid #ffd6a3;
+  width: 50%;
+  font-size: 1.1rem;
+  text-align: center;
+  border-radius: 20px;
+  padding: 2px 20px;
+  align-content: center;
+  text-indent: 0em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.proj-awards p:hover {
+  background-color: #ffd6a3;
+  color: #3e1e04;
+  font-weight: bold;
+  align-content: center;
+}
