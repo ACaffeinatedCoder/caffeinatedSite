@@ -41,6 +41,17 @@ function App() {
     }, 600);
   };
 
+  const downloadCV = () => {
+    // https://docs.google.com/document/d/1y6crW1i6mIigV_5OkiycpdWYhUO80CLB/edit?usp=sharing&ouid=100487627971534132954&rtpof=true&sd=true
+    const exportURL = 'https://docs.google.com/document/d/1y6crW1i6mIigV_5OkiycpdWYhUO80CLB/export?format=pdf';
+    const link = document.createElement('a');
+    link.href = exportURL;
+    link.download = 'acaffeinatedcoder_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   return (
     <div className="app-wrapper">
       <div className="navigation-bar">
@@ -81,7 +92,7 @@ function App() {
         </div>
 
         <div className="opening-card">
-          <h1 className="site-title">
+          <h1>
             <span style={{ color: '#3e1e04' }}>
               Hi, I'm
               <span style={{ color: '#6a3005' }}> Casey Francisco</span>!
@@ -96,7 +107,7 @@ function App() {
               <h4>
                 <i>Fueled by coffee with an eye for clean code.</i>
               </h4>
-              <button>Download my CV</button>
+              <button onClick={() => downloadCV()}>Download my CV</button>
             </div>
           </div>
         </div>
