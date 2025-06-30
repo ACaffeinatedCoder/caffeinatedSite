@@ -20,6 +20,7 @@ html, body {
 
 .app-wrapper {
   position: relative;
+  display: flexbox;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -196,5 +197,51 @@ html, body {
   to {
     transform: translateY(100%);
     opacity: 0;
+  }
+}
+
+.background-icon {
+  position: fixed;
+  z-index: -1;
+  height: 50vh;
+  align-self: stretch;
+  bottom: 0px;
+  left: calc(50% - 25vh);
+  color:#946e2e;
+}
+
+.rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34%;
+  height: calc(100% - 46.5vh);
+  left: calc(50% - 13.5vh);
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+  padding: 0 1rem;
+}
+
+.binary-column {
+  position: absolute;
+  top: -100%;
+  font-family: monospace;
+  font-size: 1.75rem;
+  color:#946e2e;
+  white-space: nowrap;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 7.5s;
+}
+
+.binary-column span {
+  display: block;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(200vh);
   }
 }

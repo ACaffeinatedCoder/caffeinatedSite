@@ -5,6 +5,8 @@ import Experience from './Experience';
 import Profile from './Profile';
 import Contact from './Contact';
 import Project from './Project';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fa0, fa1, faMugSaucer } from '@fortawesome/free-solid-svg-icons';
 
 /**
  *  Palette 
@@ -22,6 +24,19 @@ import Project from './Project';
  */
 
 function App() {
+  const [rain, setRain] = useState([]);
+
+  useEffect(() => {
+    const columns = 13;
+    const newRain = Array.from({ length: columns }, (_, i) => ({
+      id: i,
+      left: `${i * 2.5}%`,
+      delay: Math.random() * 5,
+      speed: 2 + Math.random() * 3,
+    }));
+    setRain(newRain);
+  }, []);
+
   const [showOverlay, setShowOverlay] = useState(false);
   const [animationClass, setAnimationClass] = useState('');
   const [activeOverlay, setActiveOverlay] = useState(null);
@@ -42,7 +57,6 @@ function App() {
   };
 
   const downloadCV = () => {
-    // https://docs.google.com/document/d/1y6crW1i6mIigV_5OkiycpdWYhUO80CLB/edit?usp=sharing&ouid=100487627971534132954&rtpof=true&sd=true
     const exportURL = 'https://docs.google.com/document/d/1y6crW1i6mIigV_5OkiycpdWYhUO80CLB/export?format=pdf';
     const link = document.createElement('a');
     link.href = exportURL;
@@ -123,6 +137,27 @@ function App() {
           {activeOverlay === 'projects' && <Project closer={closeOverlay} />}
         </div>
       )}
+      <div className="rain-container">
+      {rain.map((drop) => (
+        <div
+          key={drop.id}
+          className="binary-column"
+          style={{
+            left: drop.left,
+            animationDelay: `${drop.delay}s`,
+          }}
+        >
+          {Array.from({ length: 20 }).map((_, i) => (
+            <span key={i}>{Math.round(Math.random())}</span>
+          ))}
+        </div>
+      ))}
+    </div>
+
+      <FontAwesomeIcon
+        icon={faMugSaucer}
+        className='background-icon'
+      />
     </div>
   );
 }
