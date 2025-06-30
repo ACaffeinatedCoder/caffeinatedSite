@@ -124,23 +124,23 @@
 
 .cert-container {
   display: flex;
-    margin: 5px;
-    padding: 0.75rem 0.5rem;
-    background-color: #ffd6a3;
-    border-radius: 25px;
-    height: 100%;
-    width: 100%;
-    justify-items: center;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    color: #ffd6a3;
-    background-color: #6a3005;
-    border: 5px solid #965015;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, background-color 0.3s ease, font-size 0.3s ease, color 0.3s ease;
-    text-align: left;
-    cursor: pointer;
+  margin: 5px;
+  padding: 0.75rem 0.5rem;
+  background-color: #ffd6a3;
+  border-radius: 25px;
+  height: 100%;
+  width: 100%;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #ffd6a3;
+  background-color: #6a3005;
+  border: 5px solid #965015;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+  text-align: left;
+  cursor: pointer;
   font-size: 85%;
 }
 

@@ -66,6 +66,7 @@
 .embed-details p {
   text-indent: 2em;
   text-align: justify;
+  transition: transform 1.3s ease;
 }
 
 .embed-details p:hover {
@@ -83,7 +84,8 @@
   background: linear-gradient(270deg, #3e1e04, #6a3005, #965015, #c4923e);
   background-size: 200% 100%;
   background-position: right center;
-  transition: background-position 1.3s ease;  border: 0px;
+  transition: background-position 1.3s ease;
+  border: 0px;
 }
 
 .embed-visit button:hover {
@@ -105,6 +107,7 @@
   border-radius: 20px;
   padding: 2px 20px;
   text-indent: 0em;
+  transition: background-color 0.9s ease, color 0.9s ease, font-weight 0.9s ease, width 0.9s ease;
 }
 
 .proj-roles p:hover {
@@ -134,12 +137,12 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: background-color 0.3s ease, color 0.3s ease, align-content 0.3s ease, border 0.3s ease;
 }
 
 .proj-awards p:hover {
   background-color: #ffd6a3;
   color: #3e1e04;
-  font-weight: bold;
   align-content: center;
   border: 3px solid #6a3005;
 }

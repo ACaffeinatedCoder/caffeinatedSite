@@ -7,33 +7,6 @@ import Contact from './Contact';
 import Project from './Project';
 
 /**
- * Experience Page:
- *  - Timeline
- *    - Academic Experience
- *    - Work Experience
- *
- * Profile Page:
- *  - About statement
- *  - Skills
- *  - Certificates
- *
- * Projects Page:
- *  - Websites
- *    - Role
- *    - Brief Description
- *    - Functionalities
- *    - Awards if any
- *    - Link
- *    - Screenshots of pages
- *      - Gallery Style
- *
- * Contact Page:
- *  - Social Media Links
- *  - Email
- *  - Contact no.?
- */
-
-/**
  *  Palette 
 | Color Name      | Hex       | Usage                          |
 | --------------- | --------- | ------------------------------ |
@@ -71,7 +44,7 @@ function App() {
   return (
     <div className="app-wrapper">
       <div className="navigation-bar">
-        <strong className="brand">
+        <strong className="brand" onClick={() => window.open('https://github.com/ACaffeinatedCoder', '_blank')}>
           <i>acaffeinatedcoder</i>
         </strong>
         <div className="nav-links">

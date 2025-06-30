@@ -110,9 +110,10 @@
   margin: 10px 30px;
   padding-right: 20px;
   font-size: 2.2vh;
-  transition: font-size 0.3s ease;
   cursor: pointer;
   list-style-type: circle;
+  border-radius: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease, padding 0.3s ease, font-size 0.3s ease;
 }
 
 .exp-subcontent-item li::marker {
@@ -124,7 +125,6 @@
   background-color: #cbac85;
   color: #462003;
   padding: 5px;
-  border-radius: 15px;
   font-weight: bold;
 }
 

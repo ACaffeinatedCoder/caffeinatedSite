@@ -14,37 +14,6 @@ html, body {
   box-sizing: border-box;
 }
 
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .read-the-docs {
   color: #888;
 }
@@ -71,6 +40,7 @@ html, body {
 .brand {
   color: white;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .nav-links {
@@ -85,19 +55,31 @@ html, body {
   text-align: center;
   padding: 0px 5px;
   border-radius: 20px;
-  color: white;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.3s ease, border 0.3s ease;
   font-size: 1vh;
+}
+
+.nav-item h2 {
+  color: #c4923e;
+  transition: color 0.3s ease;
 }
 
 .nav-item:hover {
   background-color: #965015;
+  border: none;
+}
+
+.nav-item:hover h2{
+  color: #ffd6a3;
 }
 
 .nav-links button:disabled {
-  color: black;
   background-color: #c4923e;
+}
+
+.nav-links button:disabled h2 {
+  color: #6a3005;
 }
 
 .overall-container {
