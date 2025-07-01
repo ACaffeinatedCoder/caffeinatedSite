@@ -1,10 +1,3 @@
-/**
- * Experience Page:
- *  - Academic Records
- *  - CV?
- *  - Certificates
- *
- */
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import './Experience.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,13 +6,6 @@ import {
   faGraduationCap,
   faUserTie,
 } from '@fortawesome/free-solid-svg-icons';
-
-/**
- * Map Contents
- *  - Uniform Look
- *  -- Education/Work Experience
- *  --- Details
- */
 
 export default function Experience({ closer }) {
   const [pages, setPages] = useState([

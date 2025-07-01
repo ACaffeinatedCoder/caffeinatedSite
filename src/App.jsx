@@ -8,21 +8,6 @@ import Project from './Project';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fa0, fa1, faMugSaucer } from '@fortawesome/free-solid-svg-icons';
 
-/**
- *  Palette 
-| Color Name      | Hex       | Usage                          |
-| --------------- | --------- | ------------------------------ |
-| *dunno*         | `#462003` | Dark text color                |
-| **Dark Roast**  | `#3e1e04` | Background, navbar, base color |
-| **Espresso**    | `#6a3005` | Cards, panels, code blocks     |
-| **Mocha Cream** | `#965015` | Text highlights, soft borders  |
-| **Latte Foam**  | `#c4923e` | Accent text, muted icons       |
-| **Coffee Dust** | `#cbac85` | Primary text color             |
-| *dunno*         | `#ffd6a3` | Primary text color             |
-| **Pure White**  | `#FFFFFF` | Headers or important contrasts |
-
- */
-
 function App() {
   const [rain, setRain] = useState([]);
 
