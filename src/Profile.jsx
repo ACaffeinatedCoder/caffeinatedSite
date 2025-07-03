@@ -2,7 +2,7 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import './Experience.css';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   faCertificate,
   faCog,
@@ -12,6 +12,27 @@ import { supabase } from './supabase-client';
 
 export default function Profile({ closer }) {
   const [certs, setCerts] = useState([]);
+  const [showSubOverlay, setShowSubOverlay] = useState(false);
+  const [activeOverlay, setActiveOverlay] = useState(null);
+  const [animationClass, setAnimationClass] = useState('');
+
+  useEffect(() => {
+    if (activeOverlay) {
+      setShowSubOverlay(true);
+      setAnimationClass('slide-up');
+    }
+  }, [activeOverlay]);
+
+  const closeOverlay = () => {
+    setAnimationClass('slide-down');
+    setTimeout(() => {
+      setShowSubOverlay(false);
+      setActiveOverlay(null);
+    }, 600);
+  };
+
+  const [certificateImg, setCertificateImg] = useState('');
+  const [alternativeImg, setAlternativeImg] = useState('');
 
   const getCerts = async () => {
     const { error, data } = await supabase.from('certificates').select('*');
@@ -30,7 +51,14 @@ export default function Profile({ closer }) {
 
   const certsMapped = certs.map((cert, index) => {
     return (
-      <div className="cert-container" key={index}>
+      <div
+        className="cert-container"
+        key={index}
+        onClick={() => {
+          setActiveOverlay('open');
+          setCertificateImg(cert.image_reference);
+          setAlternativeImg(cert.alternative);
+        }}>
         <h3>{cert.certificate_name}</h3>
       </div>
     );
@@ -62,9 +90,18 @@ export default function Profile({ closer }) {
     );
   });
 
+  const headerRef = useRef(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, []);
+
   return (
     <div className="exp-container">
-      <div className="modal-header">
+      <div className="modal-header" ref={headerRef}>
         <h1></h1>
         <FontAwesomeIcon
           icon={faCircleXmark}
@@ -72,6 +109,28 @@ export default function Profile({ closer }) {
           onClick={() => closer()}
         />
       </div>
+
+      {showSubOverlay && (
+        <div
+          className={`profile-overlay ${animationClass}`}
+          style={{
+            top: `${headerHeight + 15}px`,
+            height: `calc(100% - ${headerHeight - 200}px)`,
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            closeOverlay();
+          }}>
+          <img
+            src={certificateImg}
+            alt={alternativeImg}
+            onClick={(e) => {
+              e.stopPropagation();
+              closeOverlay();
+            }}
+          />
+        </div>
+      )}
       <div className="prof-container">
         <div className="about-container">
           <h1>About</h1>

@@ -70,7 +70,7 @@ export default function Experience({ closer }) {
           </div>
 
           <p>
-            From <i title={fullStart}>{flagDate}</i>{' '}
+            From <i title={fullStart}>{fullStart}</i>{' '}
             {isCurrent ? (
               <>
                 and is <i>currently employed</i>

@@ -161,7 +161,7 @@ html, body {
   background-color: #c4923e;
   overflow: hidden;
   transition: height 0.5s ease, opacity 0.5s ease;
-  z-index: 9999;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
