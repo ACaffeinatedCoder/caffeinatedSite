@@ -8,7 +8,7 @@ import { supabase } from './supabase-client';
 export default function Experience({ closer }) {
   const [experiences, setExperiences] = useState([]);
 
-  const getExp = async () => {
+  const getExp = async() => {
     const { error, data } = await supabase
       .from('experience')
       .select('*')
@@ -25,10 +25,6 @@ export default function Experience({ closer }) {
   useEffect(() => {
     getExp();
   }, []);
-
-  useEffect(() => {
-    console.log(experiences);
-  }, [experiences]);
 
   const expMapped = experiences.map((exp) => {
     const isEducation = exp.exp_type === 'EDUCATION';
