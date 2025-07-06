@@ -204,31 +204,80 @@
   }
 }
 
-.profile-overlay {
+.new-profile-overlay {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 51%;
-  width: 97.5%;
-  background-color: rgb(203, 172, 133, 0.7);
-  overflow: hidden;
-  transition: height 0.5s ease, opacity 0.5s ease;
+  top: 25%;
+  height: 50%;
+  max-height: 60%;
+  background-color: rgba(203, 172, 133, 0.7);
+  overflow-y: auto;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding: 2rem;
+  border: 2px white solid;
+}
+
+
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(203, 172, 133, 0.7);
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-items: center;
   box-sizing: border-box;
-  max-width: 100%;
-  overflow-x: auto;
   border-radius: 15px;
-  justify-self: center;
+  padding: 2rem;
+  border: 2px solid white;
+  overflow: hidden;
 }
 
-.profile-overlay img {
-  height: 90%;
-  width: auto;
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  cursor: zoom-in;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: hidden;
 }
+
+.image-container img {
+  transition: transform 0.3s ease;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img.zoomed {
+  transform: scale(1.5);
+  cursor: zoom-out;
+}
+
+.zoom-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem;
+  border-radius: 50%;
+  z-index: 10;
+  pointer-events: none;
+}
+
 
 .slide-up {
   animation: slideUp 0.6s ease forwards;

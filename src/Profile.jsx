@@ -7,6 +7,7 @@ import {
   faCertificate,
   faCog,
   faMugHot,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { supabase } from './supabase-client';
 
@@ -90,18 +91,12 @@ export default function Profile({ closer }) {
     );
   });
 
-  const headerRef = useRef(null);
-  const [headerHeight, setHeaderHeight] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
 
-  useEffect(() => {
-    if (headerRef.current) {
-      setHeaderHeight(headerRef.current.offsetHeight);
-    }
-  }, []);
 
   return (
     <div className="exp-container">
-      <div className="modal-header" ref={headerRef}>
+      <div className="modal-header">
         <h1></h1>
         <FontAwesomeIcon
           icon={faCircleXmark}
@@ -113,22 +108,24 @@ export default function Profile({ closer }) {
       {showSubOverlay && (
         <div
           className={`profile-overlay ${animationClass}`}
-          style={{
-            top: `${headerHeight + 15}px`,
-            height: `calc(100% - ${headerHeight - 200}px)`,
-          }}
+
           onClick={(e) => {
             e.stopPropagation();
             closeOverlay();
           }}>
-          <img
-            src={certificateImg}
-            alt={alternativeImg}
-            onClick={(e) => {
-              e.stopPropagation();
-              closeOverlay();
-            }}
-          />
+          <div
+    className="image-container"
+    onClick={(e) => {
+      e.stopPropagation();
+      setIsZoomed(!isZoomed);
+    }}
+  >
+    <img
+      src={certificateImg}
+      alt={alternativeImg}
+      className={isZoomed ? 'zoomed' : ''}
+    />
+  </div>
         </div>
       )}
       <div className="prof-container">
