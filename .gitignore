@@ -24,5 +24,3 @@ dist-ssr
 *.sw?
 *.txt
 *.png
-firebase-config.js
-supabase-client.ts
