@@ -110,11 +110,6 @@ function App() {
           {activeOverlay === 'projects' && <Project closer={closeOverlay} />}
         </div>
       )}
-
-      <FontAwesomeIcon
-        icon={faMugSaucer}
-        className='background-icon'
-      />
     </div>
   );
 }
