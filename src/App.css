@@ -210,38 +210,91 @@ html, body {
   color:#946e2e;
 }
 
-.rain-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 34%;
-  height: calc(100% - 46.5vh);
-  left: calc(50% - 13.5vh);
-  pointer-events: none;
-  overflow: hidden;
-  z-index: -1;
-  padding: 0 1rem;
-}
-
-.binary-column {
-  position: absolute;
-  top: -100%;
-  font-family: monospace;
-  font-size: 1.75rem;
-  color:#946e2e;
-  white-space: nowrap;
-  animation-name: fall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 7.5s;
-}
-
-.binary-column span {
-  display: block;
-}
-
 @keyframes fall {
   to {
     transform: translateY(200vh);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navigation-bar {
+    flex-direction: column;
+    height: auto;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .brand {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-item {
+    width: 80%;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .overall-container {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+  }
+
+  .photo-container,
+  .opening-card {
+    width: 90%;
+    margin: 0.5rem 0;
+  }
+
+  .opening-card h1 {
+    font-size: 6vw;
+    text-align: center;
+  }
+
+  .card {
+    font-size: 4vw;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  .card h2 {
+    font-size: 5vw;
+    text-align: center;
+  }
+
+  .card h4 {
+    font-size: 4vw;
+  }
+
+  .card button {
+    width: 100%;
+    font-size: 4vw;
+    padding: 0.75rem;
+  }
+
+  .me-class {
+    width: 60%;
+    height: auto;
+  }
+
+  .overlay {
+    height: auto;
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  .background-icon {
+    height: 30vh;
+    left: calc(50% - 15vh);
   }
 }
