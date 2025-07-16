@@ -1,5 +1,4 @@
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import './Experience.css';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
@@ -95,7 +94,6 @@ export default function Profile({ closer }) {
   return (
     <div className="exp-container">
       <div className="modal-header">
-        <h1></h1>
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="modal-closer"
