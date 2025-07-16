@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Navi from './Navi';
 import Experience from './Experience';
 import Profile from './Profile';
 import Contact from './Contact';
 import Project from './Project';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fa0, fa1, faMugSaucer } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [showOverlay, setShowOverlay] = useState(false);
