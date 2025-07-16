@@ -33,7 +33,6 @@ export default function Contact({ closer }) {
   return (
     <div className="cont-container">
       <div className="modal-header">
-        <h1></h1>
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="modal-closer"
