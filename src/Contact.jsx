@@ -1,8 +1,6 @@
 import {
-  faAt,
   faCircleXmark,
   faEnvelope,
-  faLocation,
   faLocationDot,
   faMobile,
 } from '@fortawesome/free-solid-svg-icons';

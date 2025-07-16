@@ -2,12 +2,11 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import './Experience.css';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   faCertificate,
   faCog,
   faMugHot,
-  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { supabase } from './supabase-client';
 
