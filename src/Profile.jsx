@@ -93,7 +93,6 @@ export default function Profile({ closer }) {
 
   const [isZoomed, setIsZoomed] = useState(false);
 
-
   return (
     <div className="exp-container">
       <div className="modal-header">
@@ -108,24 +107,22 @@ export default function Profile({ closer }) {
       {showSubOverlay && (
         <div
           className={`profile-overlay ${animationClass}`}
-
           onClick={(e) => {
             e.stopPropagation();
             closeOverlay();
           }}>
           <div
-    className="image-container"
-    onClick={(e) => {
-      e.stopPropagation();
-      setIsZoomed(!isZoomed);
-    }}
-  >
-    <img
-      src={certificateImg}
-      alt={alternativeImg}
-      className={isZoomed ? 'zoomed' : ''}
-    />
-  </div>
+            className="image-container"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsZoomed(!isZoomed);
+            }}>
+            <img
+              src={certificateImg}
+              alt={alternativeImg}
+              className={isZoomed ? 'zoomed' : ''}
+            />
+          </div>
         </div>
       )}
       <div className="prof-container">

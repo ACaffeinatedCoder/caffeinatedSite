@@ -92,7 +92,9 @@ export default function Project({ closer }) {
       </div>
       <div className="proj-subcontainer">
         <h1>The results of ingesting caffeine</h1>
-        <div>{sitesMapped}</div>
+        <div style={{paddingBottom: '70px'}}>
+          {sitesMapped}
+        </div>
       </div>
     </div>
   );

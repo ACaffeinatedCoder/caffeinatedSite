@@ -31,7 +31,7 @@ export default function Experience({ closer }) {
     const hasDetails = exp.role_details.length !== 0;
     const isCurrent = exp.exp_type === 'WORK' && exp.date_end === null;
     const icon = isEducation ? faGraduationCap : faUserTie;
-    console.log(isCurrent);
+
     const flagDate = new Date(exp.date_start).toLocaleString('en-US', {
       year: 'numeric',
       month: 'long',
