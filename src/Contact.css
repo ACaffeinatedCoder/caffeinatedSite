@@ -1,141 +1,124 @@
 .cont-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  overflow: hidden;
   box-sizing: border-box;
+  overflow: hidden;
   padding: 1rem;
 }
 
 .cont-subcontainer {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-  padding: 2rem;
-  border-radius: 15px;
   background-color: #3e1e04;
-  overflow-y: scroll;
+  border-radius: 15px;
+  padding: 2rem;
+  overflow-y: auto;
+  box-sizing: border-box;
   scrollbar-width: none;
-  scroll-snap-type: y mandatory;
+  -ms-overflow-style: none;
+}
+.cont-subcontainer::-webkit-scrollbar {
+  display: none;
 }
 
 .modal-header {
-  margin-left: 10px;
+  display: flex;
+  justify-content: flex-end;
   font-family: 'JetBrains Mono', monospace;
+  padding: 1rem;
+}
+
+.modal-closer {
+  color: #ffd6a3;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.cont-subheader {
+  color: #ffd6a3;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-}
-
-.cont-subheader {
-    color: #ffd6a3;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    font-size: 100%;
+  font-size: 1.5vw;
+  gap: 1rem;
 }
 
 .cont-subheader h2 {
-    width: 30vw;
-    text-align: center;
-    font-family: 'JetBrains Mono', monospace;
+  width: 30vw;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.header-line {
-  width: 90%;
-  height: 4px;
-  background-color: #ffd6a3;
-}
-
+.header-line,
 .footer-line {
-  width: 100%;
   height: 4px;
   background-color: #ffd6a3;
+  width: 100%;
 }
 
 .contact-item-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* centers items when row is not full */
+  justify-content: center;
   gap: 1rem;
   padding: 1rem;
 }
 
 .contact-item {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
   flex: 1 1 calc(33.333% - 1rem);
   max-width: calc(33.333% - 1rem);
   min-width: 250px;
+  padding: 1rem;
+  background-color: #6a3005;
   border: 5px solid #cbac85;
   border-radius: 10px;
-  background-color: #6a3005;
-  padding: 10px;
-  margin: 0;
   font-family: 'DM Sans', sans-serif;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 2vh;
+  font-size: 1vw;
   font-weight: bold;
   color: #ffd6a3;
-  text-align: center;
-  word-break: break-word;
+  cursor: pointer;
+  transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
-
 .contact-item:hover {
-  border:5px solid #6a3005;
   background-color: #ffd6a3;
-  transform: scale(1.25);
   color: #6a3005;
+  border-color: #6a3005;
+  transform: scale(1.1);
 }
 
 .contact-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 10%;
-  height: 100%;
-  padding: 5px;
-  margin-right: 10px;
+  font-size: 1.5vw;
+  color: inherit;
 }
 
 .palette-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
+  gap: 0.5rem;
   margin-top: 1rem;
-  gap: 0rem;
 }
 
 .my-rectangle {
-  flex: 1;
+  flex: 1 1 100px;
   max-width: 100px;
   height: 80px;
   border: 3px solid white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  align-content: center;
+  display: flex;
+  align-items: center;
   justify-content: center;
-}
-
-.my-rectangle p {
-  justify-self: center;
-  align-self: center;
   font-size: 1vw;
+  font-weight: bold;
+  color: #000;
 }
 
 .copy-toast {
@@ -150,8 +133,8 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   z-index: 1000;
   opacity: 0;
-  transition: opacity 0.3s ease, bottom 0.3s ease;
   pointer-events: none;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
 }
 
 .copy-toast.show {
@@ -159,6 +142,68 @@
   bottom: 150px;
 }
 
-.copy-toast.hidden {
-  opacity: 0;
+@media screen and (max-width: 768px) {
+  .cont-container {
+    height: 100vh;
+    padding: 0.5rem;
+  }
+
+  .cont-subcontainer {
+    padding: 1rem;
+  }
+
+  .modal-header {
+    padding: 0.5rem;
+  }
+
+  .modal-closer {
+    font-size: 1.75rem;
+  }
+
+  .cont-subheader {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .cont-subheader h2 {
+    width: 100%;
+    font-size: 1.25rem;
+  }
+
+  .header-line,
+  .footer-line {
+    height: 2px;
+  }
+
+  .contact-item-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+
+  .contact-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+    font-size: 4vw;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .contact-icon {
+    font-size: 5vw;
+  }
+
+  .my-rectangle {
+    flex: 1 1 40%;
+    max-width: 100%;
+    height: 60px;
+    font-size: 3.5vw;
+  }
+
+  .copy-toast {
+    width: 90%;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
 }

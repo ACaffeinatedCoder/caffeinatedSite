@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fa0, fa1, faMugSaucer } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
-
   const [showOverlay, setShowOverlay] = useState(false);
   const [animationClass, setAnimationClass] = useState('');
   const [activeOverlay, setActiveOverlay] = useState(null);
@@ -30,47 +29,72 @@ function App() {
   };
 
   const downloadCV = () => {
-    const exportURL = 'https://docs.google.com/document/d/1y6crW1i6mIigV_5OkiycpdWYhUO80CLB/export?format=pdf';
+    const exportURL =
+      'https://docs.google.com/document/d/1y6crW1i6mIigV_5OkiycpdWYhUO80CLB/export?format=pdf';
     const link = document.createElement('a');
     link.href = exportURL;
     link.download = 'acaffeinatedcoder_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  };
+
+  const renderNavButtons = () => (
+    <>
+      <button
+        className="nav-item"
+        onClick={() => setActiveOverlay('experience')}
+        disabled={activeOverlay === 'experience'}>
+        <h2>Experience</h2>
+      </button>
+      <button
+        className="nav-item"
+        onClick={() => setActiveOverlay('profile')}
+        disabled={activeOverlay === 'profile'}>
+        <h2>Profile</h2>
+      </button>
+      <button
+        className="nav-item"
+        onClick={() => setActiveOverlay('projects')}
+        disabled={activeOverlay === 'projects'}>
+        <h2>Projects</h2>
+      </button>
+      <button
+        className="nav-item"
+        onClick={() => setActiveOverlay('contact')}
+        disabled={activeOverlay === 'contact'}>
+        <h2>Contact</h2>
+      </button>
+    </>
+  );
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <div className="app-wrapper">
       <div className="navigation-bar">
-        <strong className="brand" onClick={() => window.open('https://github.com/ACaffeinatedCoder', '_blank')}>
+        <strong
+          className="brand"
+          onClick={() =>
+            window.open('https://github.com/ACaffeinatedCoder', '_blank')
+          }>
           <i>acaffeinatedcoder</i>
         </strong>
-        <div className="nav-links">
-          <button
-            className="nav-item"
-            onClick={() => setActiveOverlay('experience')}
-            disabled={activeOverlay === 'experience'}>
-            <h2>Experience</h2>
-          </button>
-          <button
-            className="nav-item"
-            onClick={() => setActiveOverlay('profile')}
-            disabled={activeOverlay === 'profile'}>
-            <h2>Profile</h2>
-          </button>
-          <button
-            className="nav-item"
-            onClick={() => setActiveOverlay('projects')}
-            disabled={activeOverlay === 'projects'}>
-            <h2>Projects</h2>
-          </button>
-          <button
-            className="nav-item"
-            onClick={() => setActiveOverlay('contact')}
-            disabled={activeOverlay === 'contact'}>
-            <h2>Contact</h2>
-          </button>
-        </div>
+
+        <button
+          className="hamburger"
+          onClick={() => setDrawerOpen(!drawerOpen)}>
+          &#9776;
+        </button>
+
+        <div className="nav-links desktop-nav">{renderNavButtons()}</div>
+
+        {drawerOpen && (
+          <>
+            <div className="backdrop" onClick={() => setDrawerOpen(false)} />
+            <div className="nav-links mobile-drawer">{renderNavButtons()}</div>
+          </>
+        )}
       </div>
 
       <div className="overall-container">
