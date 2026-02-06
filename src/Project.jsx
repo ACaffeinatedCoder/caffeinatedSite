@@ -3,19 +3,23 @@ import './Project.css';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase-client';
+import Prompt from './Prompt';
 
 export default function Project({ closer }) {
   const [sites, setSites] = useState([]);
+  const [prompt, setPrompt] = useState(false)
 
   const getProjects = async () => {
     const { error, data } = await supabase.from('projects').select('*');
 
     if (error) {
       console.error(error.message);
+      setSites([])
+      setPrompt(false)
       return;
-    } else {
-      setSites(data);
     }
+    setSites(data ?? []);
+    setPrompt(true)
   };
 
   useEffect(() => {
@@ -94,6 +98,13 @@ export default function Project({ closer }) {
           {sitesMapped}
         </div>
       </div>
+      {prompt ? (
+        <div className='prompt-overlay'>
+          <Prompt closer={setPrompt}/>
+        </div>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 }

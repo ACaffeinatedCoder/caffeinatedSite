@@ -1,0 +1,72 @@
+.prompt-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.prompt-header {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+ .prompt-closer {
+    font-size: 2rem;
+  }
+
+.prompt-subcontainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #3e1e04;
+  border-radius: 15px;
+  padding: 2rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 75%;
+  align-self: center;
+}
+
+.prompt-subcontainer::-webkit-scrollbar {
+  display: none;
+}
+
+.prompt-subcontainer h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.5vw;
+  color: #ffd6a3;
+  margin-bottom: 0.5rem;
+}
+
+.prompt-subcontainer h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5vw;
+  color: #ffd6a3;
+  margin-bottom: 1rem;
+}
+
+.prompt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  background-color: #c4923e;
+  overflow: hidden;
+  transition: height 0.5s ease, opacity 0.5s ease;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
+}

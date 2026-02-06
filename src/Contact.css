@@ -35,6 +35,7 @@
   justify-content: flex-end;
   font-family: 'JetBrains Mono', monospace;
   padding: 1rem;
+  padding-top: 1.15rem;
 }
 
 .modal-closer {

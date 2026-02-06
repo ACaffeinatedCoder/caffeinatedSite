@@ -41,6 +41,7 @@ export default function Profile({ closer }) {
       return;
     } else {
       setCerts(data);
+    console.log("Certificates:" + data)
     }
   };
 
@@ -52,13 +53,13 @@ export default function Profile({ closer }) {
     return (
       <div
         className="cert-container"
-        key={index}
+        key={cert.id}
         onClick={() => {
           setActiveOverlay('open');
           setCertificateImg(cert.image_reference);
           setAlternativeImg(cert.alternative);
         }}>
-        <h3>{cert.certificate_name}</h3>
+        <h3>{cert.alternative}</h3>
       </div>
     );
   });

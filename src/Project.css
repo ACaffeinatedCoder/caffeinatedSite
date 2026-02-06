@@ -9,9 +9,11 @@
 }
 
 .modal-header {
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 1rem;
+  padding-top: 1.15rem;
 }
 
 .proj-subcontainer {
