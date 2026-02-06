@@ -60,7 +60,7 @@ function App() {
         className="nav-item"
         onClick={() => setActiveOverlay('contact')}
         disabled={activeOverlay === 'contact'}>
-        <h2>Contact</h2>
+        <h2>Contact Info</h2>
       </button>
     </>
   );
