@@ -69,4 +69,14 @@
   box-sizing: border-box;
   max-width: 100%;
   overflow-x: auto;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.prompt-overlay.fade-in {
+  opacity: 1;
+}
+
+.prompt-overlay.fade-out {
+  opacity: 0;
 }

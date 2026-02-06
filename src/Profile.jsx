@@ -2,20 +2,27 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import {
-  faCertificate,
-  faCog,
-  faMugHot,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCertificate, faCog, faMugHot } from '@fortawesome/free-solid-svg-icons';
 import { supabase } from './supabase-client';
 import Prompt from './Prompt';
 
 export default function Profile({ closer }) {
   const [certs, setCerts] = useState([]);
+  const [skills, setSkills] = useState([]);
+
+  const [certsChecked, setCertsChecked] = useState(false);
+  const [skillsChecked, setSkillsChecked] = useState(false);
+
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [promptVisible, setPromptVisible] = useState(false);
+
   const [showSubOverlay, setShowSubOverlay] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState(null);
   const [animationClass, setAnimationClass] = useState('');
-  const [prompt, setPrompt] = useState(false)
+
+  const [certificateImg, setCertificateImg] = useState('');
+  const [alternativeImg, setAlternativeImg] = useState('');
+  const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
     if (activeOverlay) {
@@ -32,20 +39,24 @@ export default function Profile({ closer }) {
     }, 600);
   };
 
-  const [certificateImg, setCertificateImg] = useState('');
-  const [alternativeImg, setAlternativeImg] = useState('');
-
   const getCerts = async () => {
     const { error, data } = await supabase.from('certificates').select('*');
 
-    if (error) {
-      console.error(error.message);
-      setPrompt(false)
-      return;
-    } else {
+    if (!error && data) {
       setCerts(data);
-      setPrompt(true)
     }
+
+    setCertsChecked(true);
+  };
+
+  const getSkills = async () => {
+    const { error, data } = await supabase.from('skills').select('*');
+
+    if (!error && data) {
+      setSkills(data);
+    }
+
+    setSkillsChecked(true);
   };
 
   useEffect(() => {
@@ -53,44 +64,42 @@ export default function Profile({ closer }) {
     getSkills();
   }, []);
 
-  const certsMapped = certs.map((cert, index) => {
-    return (
-      <div
-        className="cert-container"
-        key={index}
-        onClick={() => {
-          setActiveOverlay('open');
-          setCertificateImg(cert.image_reference);
-          setAlternativeImg(cert.alternative);
-        }}>
-        <h3>{cert.alternative}</h3>
-      </div>
-    );
-  });
+  useEffect(() => {
+    if (!certsChecked || !skillsChecked) return;
 
-  const [skills, setSkills] = useState([]);
+    const shouldShow =
+      certs.length === 0 || skills.length === 0;
 
-  const getSkills = async () => {
-    const { error, data } = await supabase.from('skills').select('*');
-
-    if (error) {
-      console.error(error.message);
-      return;
-    } else {
-      setSkills(data);
+    if (shouldShow) {
+      setShowPrompt(true);
+      setTimeout(() => setPromptVisible(true), 50);
     }
+  }, [certsChecked, skillsChecked, certs.length, skills.length]);
+
+  const closePrompt = () => {
+    setPromptVisible(false);
+    setTimeout(() => setShowPrompt(false), 300);
   };
 
-  const skillsMapped = skills.map((skill) => {
-    return (
-      <div className="skill-container" key={skill.id}>
-        <img src={skill.image_reference} alt={skill.alternative} />
-        <h3>{skill.alternative}</h3>
-      </div>
-    );
-  });
+  const certsMapped = certs.map((cert, index) => (
+    <div
+      className="cert-container"
+      key={index}
+      onClick={() => {
+        setActiveOverlay('open');
+        setCertificateImg(cert.image_reference);
+        setAlternativeImg(cert.alternative);
+      }}>
+      <h3>{cert.alternative}</h3>
+    </div>
+  ));
 
-  const [isZoomed, setIsZoomed] = useState(false);
+  const skillsMapped = skills.map((skill) => (
+    <div className="skill-container" key={skill.id}>
+      <img src={skill.image_reference} alt={skill.alternative} />
+      <h3>{skill.alternative}</h3>
+    </div>
+  ));
 
   return (
     <div className="exp-container">
@@ -123,6 +132,7 @@ export default function Profile({ closer }) {
           </div>
         </div>
       )}
+
       <div className="prof-container">
         <div className="about-container">
           <h1>About</h1>
@@ -130,60 +140,12 @@ export default function Profile({ closer }) {
             <FontAwesomeIcon icon={faMugHot} className="mug-icon" />
             <div className="about-text">
               <p>
-                I am a{' '}
-                <span style={{ color: '#cbac85' }}>
-                  backend-focused full-stack developer
-                </span>{' '}
-                with a degree in{' '}
-                <span style={{ color: '#cbac85' }}>Computer Science</span>, a
-                love for <span style={{ color: '#cbac85' }}>clean code</span>,
-                and a track record of building practical,{' '}
-                <span style={{ color: '#cbac85' }}>
-                  user-focused web solutions
-                </span>
-                . Technical experience includes{' '}
-                <span style={{ color: '#61DAFB', fontWeight: 'bold' }}>
-                  ReactJS
-                </span>
-                ,{' '}
-                <span style={{ color: '#FFA726', fontWeight: 'bold' }}>
-                  Firebase
-                </span>
-                ,{' '}
-                <span style={{ color: '#B388EB', fontWeight: 'bold' }}>C#</span>
-                ,{' '}
-                <span style={{ color: '#FFD43B', fontWeight: 'bold' }}>
-                  Python
-                </span>
-                ,{' '}
-                <span style={{ color: '#B0BEC5', fontWeight: 'bold' }}>
-                  SQL
-                </span>
-                , and data tools like{' '}
-                <span style={{ color: '#33C481', fontWeight: 'bold' }}>
-                  Microsoft Excel
-                </span>
-                . Beyond coding, there's experience{' '}
-                <span style={{ color: '#cbac85' }}>
-                  teaching programming concepts
-                </span>{' '}
-                and continuously{' '}
-                <span style={{ color: '#cbac85' }}>
-                  pursuing certifications
-                </span>{' '}
-                to deepen technical and analytical skills. Whether deploying
-                cloud-based systems, debugging APIs, or helping others learn,
-                there's a{' '}
-                <span style={{ color: '#cbac85' }}>strong work ethic</span>,{' '}
-                <span style={{ color: '#cbac85' }}>adaptability</span>, and a{' '}
-                <span style={{ color: '#cbac85' }}>
-                  mindset geared toward continuous improvement
-                </span>
-                .
+                I am a <span style={{ color: '#cbac85' }}>backend-focused full-stack developer</span> with a degree in <span style={{ color: '#cbac85' }}>Computer Science</span>, a love for <span style={{ color: '#cbac85' }}>clean code</span>, and a track record of building practical, <span style={{ color: '#cbac85' }}>user-focused web solutions</span>.
               </p>
             </div>
           </div>
         </div>
+
         <div className="skills-container">
           <div className="skills-header">
             <FontAwesomeIcon icon={faCog} className="cog-icon" />
@@ -192,6 +154,7 @@ export default function Profile({ closer }) {
           </div>
           <div className="skills-gallery">{skillsMapped}</div>
         </div>
+
         <div className="skills-container">
           <div className="skills-header">
             <FontAwesomeIcon icon={faCertificate} className="cog-icon" />
@@ -201,13 +164,11 @@ export default function Profile({ closer }) {
           <div className="certs-gallery">{certsMapped}</div>
         </div>
       </div>
-      
-      {!prompt ? (
-        <div className='prompt-overlay'>
-          <Prompt closer={setPrompt}/>
+
+      {showPrompt && (
+        <div className={`prompt-overlay ${promptVisible ? 'fade-in' : 'fade-out'}`}>
+          <Prompt closer={closePrompt} autoClose={5000} />
         </div>
-      ) : (
-        <p></p>
       )}
     </div>
   );

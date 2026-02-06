@@ -8,28 +8,43 @@ import Prompt from './Prompt';
 
 export default function Experience({ closer }) {
   const [experiences, setExperiences] = useState([]);
-  const [prompt, setPrompt] = useState(false)
+  const [checked, setChecked] = useState(false);
 
-  const getExp = async() => {
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [promptVisible, setPromptVisible] = useState(false);
+
+  const getExp = async () => {
     const { error, data } = await supabase
       .from('experience')
       .select('*')
       .order('date_start', { ascending: false });
 
-    if (error) {
-      console.error(error.message);
-      setExperiences([])
-      setPrompt(false)
-      return;
-    }
+    if (!error && data) {
       setExperiences(data);
-      setPrompt(true)
-    
+    } else {
+      setExperiences([]);
+    }
+
+    setChecked(true);
   };
 
   useEffect(() => {
     getExp();
   }, []);
+
+  useEffect(() => {
+    if (!checked) return;
+
+    if (experiences.length === 0) {
+      setShowPrompt(true);
+      setTimeout(() => setPromptVisible(true), 50);
+    }
+  }, [checked, experiences.length]);
+
+  const closePrompt = () => {
+    setPromptVisible(false);
+    setTimeout(() => setShowPrompt(false), 300);
+  };
 
   const expMapped = experiences.map((exp) => {
     const isEducation = exp.exp_type === 'EDUCATION';
@@ -77,13 +92,9 @@ export default function Experience({ closer }) {
           <p>
             From <i title={fullStart}>{fullStart}</i>{' '}
             {isCurrent ? (
-              <>
-                and is <i>currently employed</i>
-              </>
+              <>and is <i>currently employed</i></>
             ) : (
-              <>
-                to <i title={fullEnd}>{fullEnd}</i>
-              </>
+              <>to <i title={fullEnd}>{fullEnd}</i></>
             )}
           </p>
 
@@ -107,21 +118,19 @@ export default function Experience({ closer }) {
   return (
     <div className="exp-container">
       <div className="modal-header">
-        <div
-          style={{ gap: '1rem', display: 'flex', flexDirection: 'row' }}></div>
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="modal-closer"
           onClick={() => closer()}
         />
       </div>
+
       <div className="exp-contents">{expMapped}</div>
-      {!prompt ? (
-        <div className='prompt-overlay'>
-          <Prompt closer={setPrompt}/>
+
+      {showPrompt && (
+        <div className={`prompt-overlay ${promptVisible ? 'fade-in' : 'fade-out'}`}>
+          <Prompt closer={closePrompt} autoClose={5000} />
         </div>
-      ) : (
-        <p></p>
       )}
     </div>
   );
