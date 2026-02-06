@@ -45,19 +45,19 @@ export default function Profile({ closer }) {
     } else {
       setCerts(data);
       setPrompt(true)
-      console.log("Certificates:" + data)
     }
   };
 
   useEffect(() => {
     getCerts();
+    getSkills();
   }, []);
 
   const certsMapped = certs.map((cert, index) => {
     return (
       <div
         className="cert-container"
-        key={cert.id}
+        key={index}
         onClick={() => {
           setActiveOverlay('open');
           setCertificateImg(cert.image_reference);
@@ -81,15 +81,11 @@ export default function Profile({ closer }) {
     }
   };
 
-  useEffect(() => {
-    getSkills();
-  }, []);
-
   const skillsMapped = skills.map((skill) => {
     return (
       <div className="skill-container" key={skill.id}>
         <img src={skill.image_reference} alt={skill.alternative} />
-        <h3>{skill.description}</h3>
+        <h3>{skill.alternative}</h3>
       </div>
     );
   });
@@ -206,7 +202,7 @@ export default function Profile({ closer }) {
         </div>
       </div>
       
-      {prompt ? (
+      {!prompt ? (
         <div className='prompt-overlay'>
           <Prompt closer={setPrompt}/>
         </div>

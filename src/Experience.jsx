@@ -21,10 +21,10 @@ export default function Experience({ closer }) {
       setExperiences([])
       setPrompt(false)
       return;
-    } else {
+    }
       setExperiences(data);
       setPrompt(true)
-    }
+    
   };
 
   useEffect(() => {
@@ -116,7 +116,7 @@ export default function Experience({ closer }) {
         />
       </div>
       <div className="exp-contents">{expMapped}</div>
-      {prompt ? (
+      {!prompt ? (
         <div className='prompt-overlay'>
           <Prompt closer={setPrompt}/>
         </div>

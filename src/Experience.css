@@ -43,10 +43,11 @@
   width: 100%;
   background-color: #ffd6a3;
   padding: 1rem;
-  clip-path: polygon(75% 0, 100% 38%, 75% 100%, 0 100%, 0 0);
+  clip-path: polygon(75% 0, 100% 50%, 75% 100%, 0 100%, 0 0);
   color:#6a3005;
   font-weight: bold;
   box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .exp-middle {

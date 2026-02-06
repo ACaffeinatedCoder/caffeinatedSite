@@ -98,7 +98,7 @@ export default function Project({ closer }) {
           {sitesMapped}
         </div>
       </div>
-      {prompt ? (
+      {!prompt ? (
         <div className='prompt-overlay'>
           <Prompt closer={setPrompt}/>
         </div>
