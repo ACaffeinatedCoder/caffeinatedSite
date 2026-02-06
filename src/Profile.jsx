@@ -8,12 +8,14 @@ import {
   faMugHot,
 } from '@fortawesome/free-solid-svg-icons';
 import { supabase } from './supabase-client';
+import Prompt from './Prompt';
 
 export default function Profile({ closer }) {
   const [certs, setCerts] = useState([]);
   const [showSubOverlay, setShowSubOverlay] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState(null);
   const [animationClass, setAnimationClass] = useState('');
+  const [prompt, setPrompt] = useState(false)
 
   useEffect(() => {
     if (activeOverlay) {
@@ -38,10 +40,12 @@ export default function Profile({ closer }) {
 
     if (error) {
       console.error(error.message);
+      setPrompt(false)
       return;
     } else {
       setCerts(data);
-    console.log("Certificates:" + data)
+      setPrompt(true)
+      console.log("Certificates:" + data)
     }
   };
 
@@ -201,6 +205,14 @@ export default function Profile({ closer }) {
           <div className="certs-gallery">{certsMapped}</div>
         </div>
       </div>
+      
+      {prompt ? (
+        <div className='prompt-overlay'>
+          <Prompt closer={setPrompt}/>
+        </div>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 }

@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { faGraduationCap, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { supabase } from './supabase-client';
+import Prompt from './Prompt';
 
 export default function Experience({ closer }) {
   const [experiences, setExperiences] = useState([]);
+  const [prompt, setPrompt] = useState(false)
 
   const getExp = async() => {
     const { error, data } = await supabase
@@ -16,9 +18,12 @@ export default function Experience({ closer }) {
 
     if (error) {
       console.error(error.message);
+      setExperiences([])
+      setPrompt(false)
       return;
     } else {
       setExperiences(data);
+      setPrompt(true)
     }
   };
 
@@ -111,6 +116,13 @@ export default function Experience({ closer }) {
         />
       </div>
       <div className="exp-contents">{expMapped}</div>
+      {prompt ? (
+        <div className='prompt-overlay'>
+          <Prompt closer={setPrompt}/>
+        </div>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 }
