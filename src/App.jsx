@@ -42,7 +42,7 @@ function App() {
         className="nav-item"
         onClick={() => setActiveOverlay('experience')}
         disabled={activeOverlay === 'experience'}>
-        <h2>Experience</h2>
+        <h2>Work Experience</h2>
       </button>
       <button
         className="nav-item"
