@@ -36,7 +36,7 @@ export default function Profile() {
             <p>
               <i>
                 Systems-oriented IT professional with a background in web
-                development, quality assurance, and technical instruction.
+                development, data analysis, quality assurance, and technical instruction.
               </i>
             </p>
           </div>
