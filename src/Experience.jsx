@@ -2,7 +2,12 @@ import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import './Experience.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { faGraduationCap, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCalendar,
+  faGraduationCap,
+  faTag,
+  faUserTie,
+} from '@fortawesome/free-solid-svg-icons';
 import { supabase } from './supabase-client';
 import Prompt from './Prompt';
 
@@ -74,7 +79,10 @@ export default function Experience({ closer }) {
     return (
       <div className="exp-content-item" key={exp.id}>
         <div className="exp-left">
-          <div className="time-tag">{flagDate}</div>
+          <div className="time-tag">
+            <FontAwesomeIcon icon={faCalendar} className="tag-icon" />
+            <p>{flagDate}</p>
+          </div>
         </div>
 
         <div className="exp-middle">
@@ -92,9 +100,13 @@ export default function Experience({ closer }) {
           <p>
             From <i title={fullStart}>{fullStart}</i>{' '}
             {isCurrent ? (
-              <>and is <i>currently employed</i></>
+              <>
+                and is <i>currently employed</i>
+              </>
             ) : (
-              <>to <i title={fullEnd}>{fullEnd}</i></>
+              <>
+                to <i title={fullEnd}>{fullEnd}</i>
+              </>
             )}
           </p>
 
@@ -117,21 +129,7 @@ export default function Experience({ closer }) {
 
   return (
     <div className="exp-container">
-      <div className="modal-header">
-        <FontAwesomeIcon
-          icon={faCircleXmark}
-          className="modal-closer"
-          onClick={() => closer()}
-        />
-      </div>
-
       <div className="exp-contents">{expMapped}</div>
-
-      {showPrompt && (
-        <div className={`prompt-overlay ${promptVisible ? 'fade-in' : 'fade-out'}`}>
-          <Prompt closer={closePrompt} autoClose={5000} />
-        </div>
-      )}
     </div>
   );
 }

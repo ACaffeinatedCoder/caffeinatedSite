@@ -1,136 +1,97 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Experience from './Experience';
 import Profile from './Profile';
 import Contact from './Contact';
 import Project from './Project';
+import {
+  FaUser,
+  FaBriefcase,
+  FaFolderOpen,
+  FaEnvelope,
+  FaAward,
+  FaHamburger,
+} from 'react-icons/fa';
+import Certificates from './Certificates';
 
 function App() {
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [animationClass, setAnimationClass] = useState('');
-  const [activeOverlay, setActiveOverlay] = useState(null);
+  const [activePage, setActivePage] = useState('home');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  useEffect(() => {
-    if (activeOverlay) {
-      setShowOverlay(true);
-      setAnimationClass('slide-up');
+  const renderContent = () => {
+    switch (activePage) {
+      case 'profile':
+        return <Profile />;
+      case 'experience':
+        return <Experience />;
+      case 'projects':
+        return <Project />;
+      case 'contact':
+        return <Contact />;
+      case 'certificate':
+        return <Certificates />;
+      default:
+        <Profile />;
     }
-  }, [activeOverlay]);
-
-  const closeOverlay = () => {
-    setAnimationClass('slide-down');
-    setTimeout(() => {
-      setShowOverlay(false);
-      setActiveOverlay(null);
-    }, 600);
   };
-
-  const downloadCV = () => {
-    const exportURL =
-      'https://docs.google.com/document/d/1y6crW1i6mIigV_5OkiycpdWYhUO80CLB/export?format=pdf';
-    const link = document.createElement('a');
-    link.href = exportURL;
-    link.download = 'acaffeinatedcoder_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const renderNavButtons = () => (
-    <>
-      <button
-        className="nav-item"
-        onClick={() => setActiveOverlay('experience')}
-        disabled={activeOverlay === 'experience'}>
-        <h2>Work Experience</h2>
-      </button>
-      <button
-        className="nav-item"
-        onClick={() => setActiveOverlay('profile')}
-        disabled={activeOverlay === 'profile'}>
-        <h2>Profile</h2>
-      </button>
-      <button
-        className="nav-item"
-        onClick={() => setActiveOverlay('projects')}
-        disabled={activeOverlay === 'projects'}>
-        <h2>Projects</h2>
-      </button>
-      <button
-        className="nav-item"
-        onClick={() => setActiveOverlay('contact')}
-        disabled={activeOverlay === 'contact'}>
-        <h2>Contact</h2>
-      </button>
-    </>
-  );
-
-  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <div className="app-wrapper">
-      <div className="navigation-bar">
-        <strong
-          className="brand"
-          onClick={() =>
-            window.open('https://github.com/ACaffeinatedCoder', '_blank')
-          }>
-          <i>acaffeinatedcoder</i>
-        </strong>
-
+    <div className="app-layout">
+      {/* Sidebar */}
+      <div className={`sidebar ${sidebarOpen ? 'open' : 'collapsed'}`}>
         <button
-          className="hamburger"
-          onClick={() => setDrawerOpen(!drawerOpen)}>
-          &#9776;
+          className={`collapse-btn ${sidebarOpen ? 'expanded' : 'collapsed'}`}
+          onClick={() => setSidebarOpen(!sidebarOpen)}>
+          <FaHamburger />
         </button>
-
-        <div className="nav-links desktop-nav">{renderNavButtons()}</div>
-
-        {drawerOpen && (
-          <>
-            <div className="backdrop" onClick={() => setDrawerOpen(false)} />
-            <div className="nav-links mobile-drawer">{renderNavButtons()}</div>
-          </>
-        )}
-      </div>
-
-      <div className="overall-container">
         <div className="photo-container">
-          <img src="/me-2.png" className="me-class" />
+          <img src="/me-transparentbg.png" className="me-class" alt="Casey" />
         </div>
 
-        <div className="opening-card">
-          <h1>
-            <span style={{ color: '#3e1e04' }}>
-              Hi, I'm
-              <span style={{ color: '#6a3005' }}> Casey Francisco</span>!
-            </span>
-          </h1>
-          <div className="card">
-            <h2 style={{ textAlign: 'justify' }}>
-              I am a Backend-focused Full-stack Web Developer with a passion for
-              building reliable systems and teaching others how to code.
-            </h2>
-            <div style={{ textAlign: 'center' }}>
-              <h4>
-                <i>Fueled by coffee with an eye for clean code.</i>
-              </h4>
-              <button onClick={() => downloadCV()}>Download my CV</button>
-            </div>
-          </div>
-        </div>
+        <nav className="nav-links">
+          <button
+            className={activePage === 'profile' ? 'active' : ''}
+            onClick={() => setActivePage('profile')}>
+            <FaUser className="nav-icon" />
+            {sidebarOpen && <span className="nav-label">Profile</span>}
+          </button>
+
+          <button
+            className={activePage === 'experience' ? 'active' : ''}
+            onClick={() => setActivePage('experience')}>
+            <FaBriefcase className="nav-icon" />
+            {sidebarOpen && <span className="nav-label">Experience</span>}
+          </button>
+
+          <button
+            className={activePage === 'projects' ? 'active' : ''}
+            onClick={() => setActivePage('projects')}>
+            <FaFolderOpen className="nav-icon" />
+            {sidebarOpen && <span className="nav-label">Projects</span>}
+          </button>
+
+          <button
+            className={activePage === 'certificate' ? 'active' : ''}
+            onClick={() => setActivePage('certificate')}>
+            <FaAward className="nav-icon" />
+            {sidebarOpen && <span className="nav-label">Certificates</span>}
+          </button>
+
+          <button
+            className={activePage === 'contact' ? 'active' : ''}
+            onClick={() => setActivePage('contact')}>
+            <FaEnvelope className="nav-icon" />
+            {sidebarOpen && <span className="nav-label">Contact</span>}
+          </button>
+        </nav>
       </div>
 
-      {showOverlay && (
-        <div className={`overlay ${animationClass}`}>
-          {activeOverlay === 'experience' && (
-            <Experience closer={closeOverlay} />
-          )}
-          {activeOverlay === 'profile' && <Profile closer={closeOverlay} />}
-          {activeOverlay === 'contact' && <Contact closer={closeOverlay} />}
-          {activeOverlay === 'projects' && <Project closer={closeOverlay} />}
+      {/* Main Content */}
+      <div className="content-area">
+        <div className="subcontent-area">
+          <div className="subcontent-scroll">{renderContent()}</div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -1,105 +1,123 @@
 .cont-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
   padding: 1rem;
+  justify-items: center;
+  position: relative
 }
 
-.modal-header {
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
-}
-
+/* Main surface */
 .cont-subcontainer {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #3e1e04;
+  background-color: #4b4d4d;
   border-radius: 15px;
   padding: 2rem;
   overflow-y: auto;
   box-sizing: border-box;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  border: 1px solid #78fc31;
 }
+
 .cont-subcontainer::-webkit-scrollbar {
   display: none;
 }
 
-.modal-header {
-  display: flex;
-  justify-content: flex-end;
-  font-family: 'JetBrains Mono', monospace;
-  padding: 1rem;
-  padding-top: 1.15rem;
-}
-
-.modal-closer {
-  color: #ffd6a3;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
+/* Header */
 .cont-subheader {
-  color: #ffd6a3;
+  color: #78fc31;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   font-size: 1.5vw;
   gap: 1rem;
+  height: 20%;
 }
 
 .cont-subheader h2 {
   width: 30vw;
+  color: #78fc31;
   text-align: center;
   font-family: 'JetBrains Mono', monospace;
+  text-shadow:
+    0 0 3px #78fc31,
+    0 0 5px #78fc31,
+    0 0 10px #78fc31,
+    0 0 15px #78fc31,
+    0 0 20px #78fc31,
+    0 0 30px #78fc31;
 }
 
+/* Accent lines */
 .header-line,
 .footer-line {
   height: 4px;
-  background-color: #ffd6a3;
+  background-color: #78fc31;
   width: 100%;
+  box-shadow: 0 0 10px #78fc31;
 }
 
-.contact-item-container {
-  display: flex;
-  flex-wrap: wrap;
+.contact-greeting-container {
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  flex: 2;
+}
+
+.contact-greeting-container h1 {
+  color: #fafafa;
+}
+
+.contact-greeting-container h3 {
+  color: #b3b3b3;
+}
+
+/* Contact Items */
+.contact-item-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex: 1 1 calc(33.333% - 1rem);
-  max-width: calc(33.333% - 1rem);
-  min-width: 250px;
+  flex: 1;
+  width: 90%;
   padding: 1rem;
-  background-color: #6a3005;
-  border: 5px solid #cbac85;
+  background-color: #151515;
+  border: 1px solid #78fc31;
   border-radius: 10px;
   font-family: 'DM Sans', sans-serif;
   font-size: 1vw;
   font-weight: bold;
-  color: #ffd6a3;
+  color: #78fc31;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.2s ease;
 }
 
 .contact-item:hover {
-  background-color: #ffd6a3;
-  color: #6a3005;
-  border-color: #6a3005;
-  transform: scale(1.1);
+  background-color: #78fc31;
+  color: #151515;
+  box-shadow: 0 0 15px rgba(120, 252, 49, 0.8);
+  transform: translateY(-3px);
 }
 
 .contact-icon {
@@ -107,6 +125,7 @@
   color: inherit;
 }
 
+/* Palette preview boxes */
 .palette-container {
   display: flex;
   flex-wrap: wrap;
@@ -119,35 +138,44 @@
   flex: 1 1 100px;
   max-width: 100px;
   height: 80px;
-  border: 3px solid white;
+  border: 2px solid #78fc31;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1vw;
   font-weight: bold;
-  color: #000;
+  color: #fafafa;
+  background-color: #151515;
 }
 
+/* Toast */
 .copy-toast {
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #6a3005;
-  color: #ffd6a3;
+  background-color: #151515;
+  color: #78fc31;
   padding: 1rem 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border: 1px solid #78fc31;
+  box-shadow: 0 0 15px rgba(120, 252, 49, 0.5);
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease, bottom 0.3s ease;
+
 }
 
 .copy-toast.show {
+  transform: translate(-50%, 0);
   opacity: 1;
-  bottom: 150px;
+  bottom: 5%;
 }
+
+/* ========================= */
+/* Responsive Adjustments */
+/* ========================= */
 
 @media screen and (max-width: 768px) {
   .cont-container {
@@ -157,14 +185,6 @@
 
   .cont-subcontainer {
     padding: 1rem;
-  }
-
-  .modal-header {
-    padding: 0.5rem;
-  }
-
-  .modal-closer {
-    font-size: 1.75rem;
   }
 
   .cont-subheader {
@@ -184,7 +204,6 @@
   }
 
   .contact-item-container {
-    display: flex;
     flex-direction: row;
     gap: 0.75rem;
   }
